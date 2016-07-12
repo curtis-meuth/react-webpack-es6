@@ -17,10 +17,15 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/api', function(req, res) {
+  res.json({
+    title: 'Response from server'
+  });
+});
+
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
-
 app.listen(port, function(err) {
   if (err) {
     console.log(err);
